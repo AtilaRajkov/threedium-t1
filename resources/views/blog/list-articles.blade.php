@@ -9,14 +9,21 @@
 @endsection
 
 
-@section('banner-image')
-<header class="masthead" style="background-image: url('https://cdna.artstation.com/p/assets/images/images/017/729/070/large/anato-finnstark-sekiro-the-deep-forest-by-anatofinnstark-dd6adi0-fullview.jpg?1557136943')">
-@endsection
-
-
-@section('heading-and-subheading')
-<h1>All articles</h1>
-<span class="subheading">Sekiro. The deep forest</span>
+@section('header')
+ <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://cdna.artstation.com/p/assets/images/images/017/729/070/large/anato-finnstark-sekiro-the-deep-forest-by-anatofinnstark-dd6adi0-fullview.jpg?1557136943')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>All articles</h1>
+            <span class="subheading">Sekiro. The deep forest</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 @endsection
 
 

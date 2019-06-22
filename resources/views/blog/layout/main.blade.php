@@ -20,7 +20,9 @@
     <body>
 
         <!--Navigation and Header-->
-        @include('blog.layout.partials.header')
+        @include('blog.layout.partials.navigation')
+        
+        @yield('header')
 
         <!-- Main Content -->
         <div class="container">
