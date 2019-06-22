@@ -21,3 +21,4 @@ Auth::routes();
 
 /// Custom routes ///
 Route::get('/home', 'ArticlesController@index')->name('home'); // Lists all the articles
+Route::get('/create', 'ArticlesController@create')->name('create');

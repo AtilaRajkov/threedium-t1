@@ -6,6 +6,19 @@ use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
+   
+//   public function __construct() {
+//        $this->middleware('auth')->except('login');
+//        $this->middleware('isadmin')->only(['index', 'create', 'store', 'changestatus', 'delete']);
+//        $this->middleware('guest')->only('login');
+//    }
+    
+    public function __construct()
+    {
+       $this->middleware('auth')->only(['create']);
+    }
+   
+   
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +36,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
