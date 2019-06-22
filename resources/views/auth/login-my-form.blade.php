@@ -47,9 +47,9 @@ li.nav-item > a:focus, li.nav-item > a:hover {
 @endsection
 
 @section('content')
-<!--<div class="container mt-5">-->
-    <div class="row justify-content-center mt-5">
-        <!--<div class="col-md-8">-->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -91,7 +91,7 @@ li.nav-item > a:focus, li.nav-item > a:hover {
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{  __('Remember Me') }}
+                                        {{ __('Remember Me') }}
                                     </label>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@ li.nav-item > a:focus, li.nav-item > a:hover {
                     </form>
                 </div>
             </div>
-        <!--</div>-->
+        </div>
     </div>
-<!--</div>-->
+</div>
 @endsection

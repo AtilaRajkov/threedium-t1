@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
-// Custom routes
-Route::get('/list-articles', 'ArticlesController@index')->name('list_articles');
+/// Custom routes ///
+Route::get('/home', 'ArticlesController@index')->name('home'); // Lists all the articles
