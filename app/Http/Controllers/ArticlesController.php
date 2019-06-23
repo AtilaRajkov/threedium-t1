@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Article;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class ArticlesController extends Controller
 {
+   
+   use \App\Traits\saveAndResizeImage;  
+   
+   private $folderName = 'images';
    
 //   public function __construct() {
 //        $this->middleware('auth')->except('login');
@@ -47,20 +52,40 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $data = request()->validate([
-            'title' => 'required|string|min:3|max:191',
-            'image' => 'required|image|mimes:jpeg,bmp,png,jpg',
-            'image' => 'nullable|image|mimes:jpeg,bmp,png,jpg',
-            'content' => 'required|string|min:3|max:65000',
-        ]);
-        
-        
-        
-    } /// end of store()
+      public function store(Request $request) 
+      {
+         request()->validate([
+             'title' => 'required|string|min:3|max:191',
+             'image' => 'required|image|mimes:jpeg,bmp,png,jpg',
+             //'image' => 'nullable|image|mimes:jpeg,bmp,png,jpg',
+             'content' => 'required|string|min:3|max:65000',
+         ]);
 
-    /**
+         /// Get data from the request and save new the new article.
+         $row = new Article();
+         $row->deleted = 0;
+         $row->user_id = auth()->user()->id;
+         $row->title = request('title');
+         $row->content = request('content');
+
+         if (request()->has('image')) {
+            $row->image = $this->saveAndResizeImage($this->folderName);
+         }
+         
+         $row->save();
+         
+         // set message
+         session()->flash('message', [
+             'type' => 'success',
+            // 'text' => trans('admin/program.program-created', [ "program" => $row->title ] )
+             'text' => 'You succeccfuly created an article.' 
+         ]);
+         
+         return redirect(route('create'));
+         
+      }/// end of store()
+
+   /**
      * Display the specified resource.
      *
      * @param  int  $id

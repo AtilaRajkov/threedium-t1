@@ -30,6 +30,8 @@
 @section('content')
 <h1 class="mb-4">Create an Article</h1>
 
+@include('blog.layout.partials.messages')
+
 <form method="POST" action="{{ route('store') }}" enctype="multipart/form-data">
     @csrf
     
@@ -47,7 +49,7 @@
     <!-- IMAGE -->
     <div class="form-group">
         <label for="image">Select the Banner</label>
-        <input type="file" class="form-control-file" id="image">
+        <input type="file" name="image" class="form-control-file" id="image">
         @if($errors->has('image'))
             <div class='text text-danger'>
                 {{ $errors->first('image') }}

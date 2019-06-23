@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('image');
             $table->longtext('content');
             $table->boolean('deleted')->default(0);
-            $table->integer('deleted_by')->nullable();
+            //$table->integer('deleted_by')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
