@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/atila/Desktop/workspace/threedium-t1/routes/web.php</file>
+            <file>file:/home/atila/Desktop/workspace/threedium-t1/app/User.php</file>
+            <file>file:/home/atila/Desktop/workspace/threedium-t1/app/Helpers/Helper.php</file>
+            <file>file:/home/atila/Desktop/workspace/threedium-t1/resources/views/blog/layout/partials/messages.blade.php</file>
             <file>file:/home/atila/Desktop/workspace/threedium-t1/resources/views/blog/create.blade.php</file>
             <file>file:/home/atila/Desktop/workspace/threedium-t1/app/Model/Article.php</file>
+            <file>file:/home/atila/Desktop/workspace/threedium-t1/resources/views/blog/all-table.blade.php</file>
             <file>file:/home/atila/Desktop/workspace/threedium-t1/app/Http/Controllers/ArticlesController.php</file>
+            <file>file:/home/atila/Desktop/workspace/threedium-t1/resources/views/blog/layout/main.blade.php</file>
         </group>
     </open-files>
 </project-private>

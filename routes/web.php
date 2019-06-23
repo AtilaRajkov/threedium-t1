@@ -21,3 +21,5 @@ Auth::routes();
 Route::get('/home', 'ArticlesController@index')->name('home'); // Lists all the articles
 Route::get('/create', 'ArticlesController@create')->name('create');
 Route::post('/store', 'ArticlesController@store')->name('store');
+
+Route::get('/admin', 'ArticlesController@admin')->name('admin');

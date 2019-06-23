@@ -47,6 +47,8 @@
 @endsection
 
 @section('content')
+
+<div class="col-lg-18 col-md-10 mx-auto">
 <!--<div class="container mt-5">-->
 <div class="row justify-content-center mt-5">
     <!--<div class="col-md-8">-->
@@ -105,4 +107,5 @@
     <!--</div>-->
 </div>
 <!--</div>-->
+</div>
 @endsection

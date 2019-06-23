@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /// Relacija ka Article modelu
+    public function articles() {
+        return $this->hasMany('App\Model\Article', 'user_id');
+    }
 }

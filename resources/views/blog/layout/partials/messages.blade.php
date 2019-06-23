@@ -1,7 +1,5 @@
 @if(session()->has('message-type'))
-<div class="card mb-4 py-3 border-left-{{ session()->get('message-type') }}">
-    <div class="card-body">
-        {{ session()->get('message-text') }}
-    </div>
-</div>
+   <div class="alert alert-{{ session()->get('message-type') }}" role="alert">
+     {{ session()->get('message-text') }}
+   </div>
 @endif

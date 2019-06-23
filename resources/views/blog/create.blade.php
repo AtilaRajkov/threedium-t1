@@ -28,6 +28,8 @@
 
 
 @section('content')
+<div class="col-lg-10 col-md-10 mx-auto">
+
 <h1 class="mb-4">Create an Article</h1>
 
 @include('blog.layout.partials.messages')
@@ -73,7 +75,7 @@
     </div>
 </form>
 
-
+</div>
 @endsection
 
 

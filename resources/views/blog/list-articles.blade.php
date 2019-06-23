@@ -28,6 +28,8 @@
 
 
 @section('content')
+<div class="col-lg-8 col-md-10 mx-auto">
+
 <a href="post.html">
     <h2 class="post-title">
         My Dummy content. Man must explore, and this is exploration at its greatest
@@ -39,6 +41,8 @@
 <p class="post-meta">Posted by
     <a href="#">Atila Rajkov</a>
     on Jun 22, 2019</p>
+
+
 </div>
 @endsection
 

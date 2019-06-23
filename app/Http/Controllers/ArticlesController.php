@@ -22,7 +22,7 @@ class ArticlesController extends Controller
     
     public function __construct()
     {
-       $this->middleware('auth')->only(['index', 'create']);
+       $this->middleware('auth')->only(['create', 'admin']);
     }
    
    
@@ -34,7 +34,18 @@ class ArticlesController extends Controller
     public function index()
     {
         return view('blog.list-articles');
-    }
+    }  // index() end
+    
+    
+    public function admin()
+    {
+       $rows =  Article::where('deleted', 0)
+               ->where('user_id', auth()->id())
+               ->get();
+       
+       return(view('blog.all-table', compact('rows')));
+       
+    } // allTable() end
 
     /**
      * Show the form for creating a new resource.
@@ -57,7 +68,6 @@ class ArticlesController extends Controller
          request()->validate([
              'title' => 'required|string|min:3|max:191',
              'image' => 'required|image|mimes:jpeg,bmp,png,jpg',
-             //'image' => 'nullable|image|mimes:jpeg,bmp,png,jpg',
              'content' => 'required|string|min:3|max:65000',
          ]);
 
@@ -75,11 +85,13 @@ class ArticlesController extends Controller
          $row->save();
          
          // set message
-         session()->flash('message', [
-             'type' => 'success',
-            // 'text' => trans('admin/program.program-created', [ "program" => $row->title ] )
-             'text' => 'You succeccfuly created an article.' 
-         ]);
+//         session()->flash('message', [
+//             'type' => 'success',
+//            // 'text' => trans('admin/program.program-created', [ "program" => $row->title ] )
+//             'text' => 'You succeccfuly created an article.' 
+//         ]);
+         session()->flash('message-type', 'success');
+         session()->flash('message-text', 'Successfully created Article "' . $row->title . '".');
          
          return redirect(route('create'));
          
@@ -129,4 +141,6 @@ class ArticlesController extends Controller
     {
         //
     }
+    
+    
 }
