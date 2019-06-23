@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Article;
+use Illuminate\Support\Str;
 
 class ArticlesController extends Controller
 {
@@ -15,7 +17,7 @@ class ArticlesController extends Controller
     
     public function __construct()
     {
-       $this->middleware('auth')->only(['create']);
+       $this->middleware('auth')->only(['index', 'create']);
     }
    
    
@@ -47,8 +49,16 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $data = request()->validate([
+            'title' => 'required|string|min:3|max:191',
+            'image' => 'required|image|mimes:jpeg,bmp,png,jpg',
+            'image' => 'nullable|image|mimes:jpeg,bmp,png,jpg',
+            'content' => 'required|string|min:3|max:65000',
+        ]);
+        
+        
+        
+    } /// end of store()
 
     /**
      * Display the specified resource.
