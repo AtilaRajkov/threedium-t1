@@ -68,7 +68,7 @@ class ArticlesController extends Controller
       public function store(Request $request) 
       {
          request()->validate([
-             'title' => 'required|string|min:3|max:191',
+             'title' => 'required|string|min:3|max:191|unique:articles',
              'image' => 'required|image|mimes:jpeg,bmp,png,jpg',
              'content' => 'required|string|min:3|max:65000',
          ]);
@@ -87,11 +87,6 @@ class ArticlesController extends Controller
          $row->save();
          
          // set message
-//         session()->flash('message', [
-//             'type' => 'success',
-//            // 'text' => trans('admin/program.program-created', [ "program" => $row->title ] )
-//             'text' => 'You succeccfuly created an article.' 
-//         ]);
          session()->flash('message-type', 'success');
          session()->flash('message-text', 'Successfully created Article "' . $row->title . '".');
          
@@ -116,9 +111,9 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        return view('blog.edit', compact('article'));
     }
 
     /**
@@ -128,10 +123,35 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Article $article)
     {
-        //
-    }
+       request()->validate([
+          'title' => 'required|string|min:3|max:191|unique:articles,title,' . $article->id,
+          'image' => 'nullable|image|mimes:jpeg,bmp,png,jpg',
+          'content' => 'required|string|min:3|max:65000',
+      ]);
+
+      $row = $article;
+
+      $row->deleted = 0;
+      $row->user_id = auth()->user()->id;
+      $row->title = request('title');
+      $row->content = request('content');
+
+      $row->image = $article->image;
+
+      if (request()->has('image')) {
+         $row->image = $this->saveAndResizeImage($this->folderName);
+      }
+
+      $row->save();
+
+      // set message
+      session()->flash('message-type', 'success');
+      session()->flash('message-text', 'Successfully edited Article "' . $row->title . '".');
+
+      return back();
+   }
 
     /**
      * Remove the specified resource from storage.
@@ -141,9 +161,10 @@ class ArticlesController extends Controller
      */
     public function delete(Article $article) {
 
-      // hard delete
-      //$user->delete();
-      // soft delete
+      /// hard delete:
+      //$article->delete();
+      
+      /// Soft delete:
       $article->deleted = 1;
       $article->deleted_at = now();
       $article->save();
@@ -151,11 +172,10 @@ class ArticlesController extends Controller
       session()->flash('message-type', 'success');
       session()->flash('message-text', 'Successfully deelted Article: "' . $article->title . '".');
 
-      $this->admin();
       
       return back();
               
-   }
+   } // end delete()
     
     
 }

@@ -56,7 +56,6 @@
                <th scope="col">Author</th>
                <th scope="col">Title</th>
                <th scope="col">Image</th>
-               <th scope="col">Content</th>
                <th scope="col">Options</th>
            </tr>
        </thead>
@@ -72,13 +71,19 @@
                          <img class="banner" src="{{ getImage($row, 's') }}" alt="{{ $row->title}}">
                      </a>
                  </td>
-                 <td>{{ mb_substr($row->content, 0,  200 ) . '...'}}</td>
+                 
                  <td >
+                     
+                     <a href="{{ route('edit', ['article' => $row->id]) }}" 
+                        class="btn btn-success btn-sm">
+                         Edit
+                     </a>
 
                      <a href="{{ route('delete', ['article' => $row->id]) }}" 
                         class="btn btn-danger btn-sm">
                          Delete
                      </a>
+                     
                      
                      
 

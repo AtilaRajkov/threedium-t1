@@ -24,3 +24,5 @@ Route::post('/store', 'ArticlesController@store')->name('store');
 
 Route::get('/admin', 'ArticlesController@admin')->name('admin');
 Route::get('/delete/{article}', 'ArticlesController@delete')->name('delete');
+Route::get('/edit/{article}', 'ArticlesController@edit')->name('edit');
+Route::post('/update/{article}', 'ArticlesController@update')->name('update');
