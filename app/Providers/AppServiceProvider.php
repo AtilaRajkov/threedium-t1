@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use App\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,8 +23,14 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-       Schema::defaultStringLength(191);
-    }
+    public function boot() 
+   {
+      Schema::defaultStringLength(191);
+
+      $authorsWithArticles = User::whereHas('articles', function ($query) {
+                 $query->where('deleted', 0);
+              })->get();
+      view()->share('authorsWithArticles', $authorsWithArticles);
+   }
+
 }

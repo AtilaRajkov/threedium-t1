@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 24, 2019, 7:12:25 PM
+    Author     : atila
+*/
+
+/*** For listing all the articles ***/
+.clip-container {
+    position: relative;
+    height: 140px;
+    background: url(img_navsprites.gif) 0 0;
+}
+.heading-text {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    width: 100%;
+    text-align: left;
+    font-size: 1.5em;
+    font-family: Helvetica;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#my_sidebar {
+    border: 1px solid #DFDFDF;
+}
+
+#sidebar_header {
+    opacity: 0.85;
+}

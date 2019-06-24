@@ -26,3 +26,5 @@ Route::get('/admin', 'ArticlesController@admin')->name('admin');
 Route::get('/delete/{article}', 'ArticlesController@delete')->name('delete');
 Route::get('/edit/{article}', 'ArticlesController@edit')->name('edit');
 Route::post('/update/{article}', 'ArticlesController@update')->name('update');
+Route::get('/articles/{article}/{slug}', 'ArticlesController@show')->name('show');
+Route::get('/articles-by/{user}/{author}', 'ArticlesController@articlesByAuthor')->name('articles_by_author');

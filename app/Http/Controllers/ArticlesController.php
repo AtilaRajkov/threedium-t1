@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Article;
+use App\User;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
@@ -33,7 +34,13 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('blog.list-articles');
+       $rows = Article::where('deleted', 0)
+               ->paginate(2);
+               
+       
+       $size = 'm';
+       
+        return view('blog.list-articles', compact(['rows', 'size']));
     }  // index() end
     
     
@@ -100,9 +107,10 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        //
+       $image = getImage($article, 'l');
+        return(view('blog.show', compact(['article', 'image'])));
     }
 
     /**
@@ -177,5 +185,17 @@ class ArticlesController extends Controller
               
    } // end delete()
     
+   public function articlesByAuthor(User $user)
+   {
+//      dd('Udje');
+     $rows = Article::where('user_id', $user->id)
+             ->where('deleted', 0)
+             ->get();
+     $author = $user->name;
+     $size = 'm';
+      
+      return view('blog.authors-articles', compact(['rows', 'author', 'size']));
+   }
     
 }
+

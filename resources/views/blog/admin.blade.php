@@ -44,16 +44,17 @@
 
 
 @section('content')
-<div class="col-lg-12 col-md-12 mx-auto">
+<div class="col-lg-10 col-md-12 mx-auto">
     
     @include('blog.layout.partials.messages')
     
     <h1>My Admin Panel</h1>
 
-   <table class="table table-striped table-dark">
+   <!--<table class="table table-bordered  table-hover table-dark">-->
+   <table class="table table-striped table-hover table-dark table-sm">
        <thead class="thead-dark">
            <tr>
-               <th scope="col">Author</th>
+               <th scope="col" class="pl-3">Author</th>
                <th scope="col">Title</th>
                <th scope="col">Image</th>
                <th scope="col">Options</th>
@@ -64,18 +65,23 @@
       @foreach($rows as $row)
          <tbody>
              <tr>
-                 <td>{{ $row->user->name }}</td>
-                 <td>{{ $row->title}}</td>
+                 <td class="align-middle pl-3">{{ $row->user->name }}</td>
+                 <td class="align-middle">{{ $row->title}}</td>
                  <td>
                      <a href="{{ getImage($row, 'l') }}" target="_blank">
                          <img class="banner" src="{{ getImage($row, 's') }}" alt="{{ $row->title}}">
                      </a>
                  </td>
                  
-                 <td >
+                 <td class="align-middle">
+                     
+                     <a href="{{ route('show', ['article' => $row->id, 'slug' => Str::slug($row->title, '-')  ]) }}" 
+                        class="btn btn-success btn-sm">
+                         Show
+                     </a>
                      
                      <a href="{{ route('edit', ['article' => $row->id]) }}" 
-                        class="btn btn-success btn-sm">
+                        class="btn btn-info btn-sm">
                          Edit
                      </a>
 

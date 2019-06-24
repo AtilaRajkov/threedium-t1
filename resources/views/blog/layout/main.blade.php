@@ -27,16 +27,16 @@
         <!-- Main Content -->
         <div class="container">
             <div class="row">
-                
-                    @yield('content')
 
-                </div>
+                @yield('content')
+
             </div>
         </div>
+    </div>
 
-        @include('blog.layout.partials.footer')
-        
-        @yield('custom-js')
+   @include('blog.layout.partials.footer')
+
+   @yield('custom-js')
 
 
     </body>
