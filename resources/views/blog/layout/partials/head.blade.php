@@ -8,3 +8,5 @@
 
   <!-- Custom styles for this template -->
   <link href="/css/blog/clean-blog.min.css" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

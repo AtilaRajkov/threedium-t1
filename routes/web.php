@@ -23,3 +23,4 @@ Route::get('/create', 'ArticlesController@create')->name('create');
 Route::post('/store', 'ArticlesController@store')->name('store');
 
 Route::get('/admin', 'ArticlesController@admin')->name('admin');
+Route::get('/delete/{article}', 'ArticlesController@delete')->name('delete');

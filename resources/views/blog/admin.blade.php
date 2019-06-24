@@ -13,6 +13,14 @@
     .banner {
        width: 200px;
     }
+    .remove {
+/*        width: 30px;
+        height: auto;*/
+    }
+    .btn {
+        font-size: 12px;
+        padding: 5px;
+    }
 </style>
 @endsection
 
@@ -38,7 +46,9 @@
 @section('content')
 <div class="col-lg-12 col-md-12 mx-auto">
     
-    <h1>All Articles</h1>
+    @include('blog.layout.partials.messages')
+    
+    <h1>My Admin Panel</h1>
 
    <table class="table table-striped table-dark">
        <thead class="thead-dark">
@@ -63,7 +73,16 @@
                      </a>
                  </td>
                  <td>{{ mb_substr($row->content, 0,  200 ) . '...'}}</td>
-                 <td>@mdo</td>
+                 <td >
+
+                     <a href="{{ route('delete', ['article' => $row->id]) }}" 
+                        class="btn btn-danger btn-sm">
+                         Delete
+                     </a>
+                     
+                     
+
+                 </td>
              </tr>
          </tbody>
         @endforeach

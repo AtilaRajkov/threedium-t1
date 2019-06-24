@@ -43,7 +43,9 @@ class ArticlesController extends Controller
                ->where('user_id', auth()->id())
                ->get();
        
-       return(view('blog.all-table', compact('rows')));
+       //$user = \App\User::where('id', auth()->id())->first();
+       
+       return(view('blog.admin', compact(['rows'])));
        
     } // allTable() end
 
@@ -137,10 +139,23 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    public function delete(Article $article) {
+
+      // hard delete
+      //$user->delete();
+      // soft delete
+      $article->deleted = 1;
+      $article->deleted_at = now();
+      $article->save();
+
+      session()->flash('message-type', 'success');
+      session()->flash('message-text', 'Successfully deelted Article: "' . $article->title . '".');
+
+      $this->admin();
+      
+      return back();
+              
+   }
     
     
 }
