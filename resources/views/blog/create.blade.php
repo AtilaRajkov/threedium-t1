@@ -5,7 +5,7 @@
 @endsection
 
 @section('custom-css')
-
+<!--<link href="/ckeditor/contents.css" rel="stylesheet" type="text/css"/>-->
 @endsection
 
 
@@ -62,7 +62,7 @@
     <!-- CONTENT -->
     <div class="form-group">
         <label for="content">Content</label>
-        <textarea name="content" class="form-control" id="content" rows="5">{{ old('content') }}</textarea>
+        <textarea name="content" class="form-control" id="content-create" rows="10" >{{ old('content') }}</textarea>
         @if($errors->has('title'))
             <div class='text text-danger'>
                 {{ $errors->first('content') }}
@@ -81,5 +81,11 @@
 
 
 @section('custom-js')
-
+<!--<script src="/ckeditor/ckeditor.js" type="text/javascript"></script>-->
+<!--<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>-->
+<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+<script>
+   
+CKEDITOR.replace( 'content' );
+</script>
 @endsection

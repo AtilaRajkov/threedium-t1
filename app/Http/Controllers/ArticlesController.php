@@ -14,6 +14,7 @@ class ArticlesController extends Controller
    use \App\Traits\saveAndResizeImage;  
    
    private $folderName = 'images';
+   private $numberOfArticles = 2;
    
 //   public function __construct() {
 //        $this->middleware('auth')->except('login');
@@ -35,7 +36,7 @@ class ArticlesController extends Controller
     public function index()
     {
        $rows = Article::where('deleted', 0)
-               ->paginate(2);
+               ->paginate($this->numberOfArticles);
                
        
        $size = 'm';
@@ -121,6 +122,8 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
+       $this->authorize('update', $article);
+       
         return view('blog.edit', compact('article'));
     }
 
@@ -133,6 +136,8 @@ class ArticlesController extends Controller
      */
     public function update(Article $article)
     {
+       $this->authorize('update', $article);
+       
        request()->validate([
           'title' => 'required|string|min:3|max:191|unique:articles,title,' . $article->id,
           'image' => 'nullable|image|mimes:jpeg,bmp,png,jpg',
@@ -167,7 +172,9 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Article $article) {
+    public function delete(Article $article) 
+    {
+      $this->authorize('update', $article);
 
       /// hard delete:
       //$article->delete();
@@ -190,7 +197,7 @@ class ArticlesController extends Controller
 //      dd('Udje');
      $rows = Article::where('user_id', $user->id)
              ->where('deleted', 0)
-             ->get();
+             ->paginate($this->numberOfArticles);
      $author = $user->name;
      $size = 'm';
       

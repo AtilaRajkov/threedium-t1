@@ -35,7 +35,7 @@
 @section('content')
 <div class="col-lg-8 col-md-10 mx-auto">
 
-    {{ $article->content }}
+    {!! $article->content !!}
 
 @endsection
 

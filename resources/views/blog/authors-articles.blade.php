@@ -32,11 +32,6 @@
     @if( count($rows) >0 )
       @foreach( $rows as $row )
       <div class="post-preview">
-<!--  <a href="post.html">
-              <h2 class="post-title">
-                  {{ $row->title }}
-              </h2>
-          </a>-->
          <a href="{{ route('show', ['article' => $row->id, 'slug' => Str::slug($row->title, '-') ]) }}" class="align-bottom">
              <div class="clip-container" style="background: url('{{ getImage($row, $size) }}')">
                  <div class="text-white heading-text">
@@ -50,6 +45,9 @@
               on: {{ date('M d, Y', strtotime($row->created_at)) }}</p>
       </div>
       @endforeach
+      <!--Pagination-->
+      @include('blog.layout.partials.pagination')
+      
     @endif
 
 </div>

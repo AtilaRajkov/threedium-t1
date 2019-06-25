@@ -47,7 +47,9 @@
       </div>
       @endforeach
       
-      <div>{{ $rows->links() }}</div>
+      <!--Pagination-->
+      @include('blog.layout.partials.pagination')
+      
     @endif
 
 </div>
