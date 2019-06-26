@@ -1,5 +1,5 @@
 <!--<div class="col-lg-4 col-md-2" style="background-color: gray;">-->
-<div class="col-lg-4 col-md-2"  id="my_sidebar">
+
     
     <h4 class="mt-3 ml-2" id="sidebar_header">Articles by authors:</h4>
     
@@ -17,4 +17,4 @@
     </div>
     @endif
     
-</div>
+</div

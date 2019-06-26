@@ -12,8 +12,13 @@
             
            <!--Api link-->
           <li class="nav-item">
-              <a class="nav-link" href="{{ route('blank_page') }}" id="api_all_articles">Api: all-articles</a>
+              <a class="nav-link" href="{{ route('blank_page') }}" id="api_all_articles">Api:all-articles</a>
           </li>
+          @if (Auth::check()) 
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('api_create')}}">Api:Create</a>
+            </li>
+          @endif
           
           <li class="nav-item">
             <a class="nav-link" href="{{route('home')}}">All articles</a>

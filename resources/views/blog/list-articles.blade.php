@@ -40,10 +40,15 @@
                  </div>
              </div>
          </a>
-          <div>{{ mb_substr($row->content, 0, 200) }}</div>
-          <p class="post-meta">Posted by
-              <a href="{{ route('articles_by_author', ['user' => $row->user->id, 'author' => Str::slug($row->user->name, '-')  ]) }}">{{ $row->user->name }}</a>
-              on: {{ date('M d, Y', strtotime($row->created_at)) }}</p>
+         <div>
+             {{ mb_substr($row->content, 0, 200) }}
+         </div>
+         <p class="post-meta">Posted by
+             <a href="{{ route('articles_by_author', ['user' => $row->user->id, 'author' => Str::slug($row->user->name, '-')  ]) }}">
+                 {{ $row->user->name }}
+             </a>
+             on: {{ date('M d, Y', strtotime($row->created_at)) }}
+         </p>
       </div>
       @endforeach
       
@@ -54,7 +59,9 @@
 
 </div>
 
+<div class="col-lg-4 col-md-2"  id="my_sidebar">
 @include('blog.layout.partials.sidebar')
+</div>
 
 @endsection
 

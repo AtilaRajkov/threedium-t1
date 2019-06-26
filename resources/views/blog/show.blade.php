@@ -36,6 +36,13 @@
 <div class="col-lg-8 col-md-10 mx-auto">
 
     {!! $article->content !!}
+    
+</div>
+    
+    <div class="col-lg-4 col-md-2"  id="my_sidebar">
+        @include('blog.layout.partials.sidebar')
+    </div>
+
 
 @endsection
 

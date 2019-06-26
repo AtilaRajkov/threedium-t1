@@ -5,12 +5,8 @@
         <group>
             <file>file:/home/atila/Desktop/workspace/threedium-t1/resources/views/blog/list-articles.blade.php</file>
             <file>file:/home/atila/Desktop/workspace/threedium-t1/routes/web.php</file>
-            <file>file:/home/atila/Desktop/workspace/threedium-t1/resources/views/blog/api/api-list-articles.blade.php</file>
             <file>file:/home/atila/Desktop/workspace/threedium-t1/resources/views/blog/blank-page.blade.php</file>
             <file>file:/home/atila/Desktop/workspace/threedium-t1/app/Http/Resources/Article.php</file>
-            <file>file:/home/atila/Desktop/workspace/threedium-t1/app/Http/Controllers/Api/ApiController.php</file>
-            <file>file:/home/atila/Desktop/workspace/threedium-t1/app/Http/Controllers/ArticlesController.php</file>
-            <file>file:/home/atila/Desktop/workspace/threedium-t1/resources/views/blog/layout/partials/navigation.blade.php</file>
         </group>
     </open-files>
 </project-private>

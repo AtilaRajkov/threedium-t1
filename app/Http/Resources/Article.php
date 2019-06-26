@@ -18,10 +18,12 @@ class Article extends JsonResource
             'id' => $this->id,
             'user_id' => $this->user_id,
             'title' => $this->title,
-            'image' => $this->image,
+            'image' => \getImage($this, 'm'),
             'content' => $this->content,
             'deleted' => $this->deleted,
-            'size' => 'm'
+            'author' => $this->user->name,
+            'author_id' => $this->user->id,
+            'created_at' => date('M d, Y', strtotime($this->created_at)),
         ];
     }
 }
