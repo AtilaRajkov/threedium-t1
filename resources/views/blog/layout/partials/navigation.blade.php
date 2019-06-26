@@ -10,6 +10,11 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             
+           <!--Api link-->
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('blank_page') }}" id="api_all_articles">Api: all-articles</a>
+          </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="{{route('home')}}">All articles</a>
           </li>

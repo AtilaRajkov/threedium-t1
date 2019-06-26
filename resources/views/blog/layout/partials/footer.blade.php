@@ -30,7 +30,7 @@
               </a>
             </li>
           </ul>
-          <p class="copyright text-muted">A.R. &copy; "Threedium test 1" {{date('Y')}}</p>
+          <p class="copyright text-muted">Atila Rajkov &copy; "Threedium test 1" {{date('Y')}}</p>
         </div>
       </div>
     </div>

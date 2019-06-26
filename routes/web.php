@@ -10,8 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'ArticlesController@index')->name('home'); 
+// Promeniti u Blank!!!!//
+//////////////////////////////////
+Route::get('/', 'ArticlesController@blankPage')->name('blank_page');
+///////////////////////////////////////
 
 Auth::routes();
 
@@ -28,3 +30,6 @@ Route::get('/edit/{article}', 'ArticlesController@edit')->name('edit');
 Route::post('/update/{article}', 'ArticlesController@update')->name('update');
 Route::get('/articles/{article}/{slug}', 'ArticlesController@show')->name('show');
 Route::get('/articles-by/{user}/{author}', 'ArticlesController@articlesByAuthor')->name('articles_by_author');
+
+/// Api Routes ///
+Route::get('/api/list-articles', 'Api\ApiController@index')->name('api_list_articles');

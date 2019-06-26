@@ -26,8 +26,12 @@ class ArticlesController extends Controller
     {
        $this->middleware('auth')->only(['create', 'admin']);
     }
-   
-   
+    
+    public function blankPage()
+    {
+       return view('blog.blank-page');
+    }
+
     /**
      * Display a listing of the resource.
      *
