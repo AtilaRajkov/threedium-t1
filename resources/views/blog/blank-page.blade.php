@@ -20,7 +20,7 @@
             <h1></h1>
             <span class="subheading"></span>
             <a class="btn btn-primary mr-5" href="{{ route('home') }}">PHP</a>
-            <a class="btn btn-danger" href="">Ajax</a>
+            <a class="btn btn-danger" id="ajax_header" href="">Ajax</a>
           </div>
         </div>
       </div>
@@ -45,44 +45,39 @@
 <script>
    
    /// Api All Articles:
-   $(document).load(function() {
+   $(document).ready(function() {
       
-     // $('#api_all_articles').on('click', function(e) {
+      $('#ajax_header').on('click', function(e) {
          e.preventDefault();
          
-         $.ajax({
-            url: "/api/list-articles",
-            type: "GET",
-            data: {
-               '_token': $('form [name=_token]').val()
-            },
-            'dataType': "html"
-         }).done(function(data){
-
-
-            /// OVO RADI :D
-//            var articleObject = jQuery.parseJSON(data);
-//             $.each(articleObject.data, function(index, element) {
-//               console.log(element.title); 
-//           });
-            var articleObject = jQuery.parseJSON(data);
-             $.each(articleObject.data, function(index, element) {
-               var htmlString = "<h1>" + element.title + "</h1>";
-               htmlString += "<img src='" + element.image  +"'>";
-               
-               $("#ajax_div").append(htmlString);
-               
-           });
-
-               
-         }).fail(function(jqXHR, error, message){
-            alert('YOU STUPID');
-         }); // ajax end
+          // ajax end
          
-      //}); // #api_all_articles on click end
-      
+      }); // #api_all_articles on click end
+      (function(){
+      $.ajax({
+                  url: "/api/list-articles",
+                  type: "GET",
+                  data: {
+                     '_token': $('form [name=_token]').val()
+                  },
+                  'dataType': "json"
+               }).done(function(response){
+                   $.each(response.data, function(index, element) {
+                     var htmlString = "<h1>" + element.title + "</h1>";
+                     htmlString += "<img src='" + element.image  +"'>";
+
+                     $("#ajax_div").append(htmlString);
+
+                 });
+
+
+               }).fail(function(jqXHR, error, message){
+                  alert('YOU STUPID');
+               });
+      })();
    }); // document ready end
    
+
 
 </script>
 @endsection
