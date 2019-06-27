@@ -49,6 +49,17 @@
         @endif
     </div>
     
+    <!-- SUMMARY -->
+    <div class="form-group">
+        <label for="title">Summary</label>
+        <input type="text" name="summary" value="{{ old('summary', $article->summary) }}" class="form-control" id="summary" placeholder="">
+        @if($errors->has('summary'))
+            <div class='text text-danger'>
+                {{ $errors->first('summary') }}
+            </div>   
+        @endif
+    </div>
+    
     @if(isset($article->image) && !empty($article->image))
       <div>
           <label>Current image</label>
@@ -90,5 +101,9 @@
 
 
 @section('custom-js')
-
+<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+<script>
+   
+CKEDITOR.replace( 'content' );
+</script>
 @endsection

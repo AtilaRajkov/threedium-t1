@@ -80,7 +80,7 @@
                         "</a>" +
                         
                         "<div>" +
-                            element.content.substring(0, 200) +
+                            element.summary +
                         "</div>" +
                         
                         "<p class=\"post-meta-\">Posted by: " +

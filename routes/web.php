@@ -35,3 +35,4 @@ Route::get('/articles-by/{user}/{author}', 'ArticlesController@articlesByAuthor'
 Route::get('/api/list-articles', 'Api\ApiController@index')->name('api_list_articles');
 Route::get('/api/create', 'Api\ApiController@create')->name('api_create');
 Route::post('/api/store', 'Api\ApiController@store')->name('api_store');
+Route::get('/api/delete', 'Api\ApiController@delete')->name('api_delete');

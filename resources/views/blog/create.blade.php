@@ -48,6 +48,17 @@
         @endif
     </div>
 
+    <!-- SUMMARY -->
+    <div class="form-group">
+        <label for="title">Summary</label>
+        <input type="text" name="summary" value="{{ old('summary') }}" class="form-control" id="summary" placeholder="">
+        @if($errors->has('summary'))
+            <div class='text text-danger'>
+                {{ $errors->first('summary') }}
+            </div>   
+        @endif
+    </div>
+    
     <!-- IMAGE -->
     <div class="form-group">
         <label for="image">Choose an Image</label>
@@ -58,6 +69,8 @@
             </div>
          @endif
     </div>
+    
+    
 
     <!-- CONTENT -->
     <div class="form-group">

@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->integer('user_id');
             $table->string('title');
             $table->string('image');
+            $table->string('summary');
             $table->longtext('content');
             $table->boolean('deleted')->default(0);
             //$table->integer('deleted_by')->nullable();

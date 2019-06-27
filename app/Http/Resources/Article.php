@@ -18,6 +18,7 @@ class Article extends JsonResource
             'id' => $this->id,
             'user_id' => $this->user_id,
             'title' => $this->title,
+            'summary' => $this->summary,
             'image' => \getImage($this, 'm'),
             'content' => $this->content,
             'deleted' => $this->deleted,

@@ -21,6 +21,9 @@
         font-size: 12px;
         padding: 5px;
     }
+    #success_message_div {
+        display: none;
+    }
 </style>
 @endsection
 
@@ -49,6 +52,8 @@
     @include('blog.layout.partials.messages')
     
     <h1>My Admin Panel</h1>
+    
+    <div class="alert alert-success" role="alert" id="success_message_div"></div>
 
    <!--<table class="table table-bordered  table-hover table-dark">-->
    <table class="table table-striped table-hover table-dark table-sm">
@@ -64,7 +69,7 @@
      @if( count($rows) > 0 ) 
       @foreach($rows as $row)
          <tbody>
-             <tr>
+             <tr class="table_row">
                  <td class="align-middle pl-3">{{ $row->user->name }}</td>
                  <td class="align-middle">{{ $row->title}}</td>
                  <td>
@@ -90,22 +95,89 @@
                          Delete
                      </a>
                      
+                     <!--Ajax Delete-->
+                     <a href="#" 
+                        data-id="{{ $row->id }}"
+                        class="btn btn-warning btn-sm ajax-delete-button"
+                        
+                        >
+                         Ajax:Delete
+                     </a>
+                     
                      
                      
 
                  </td>
              </tr>
          </tbody>
+         <input type="text" hidden value="0" id="remove_indicator">
         @endforeach
        @endif
 
    </table>
     
 </div>
-@endsection
+<form id="admin_form">
+    @csrf
+</form>
 
+
+@endsection
 
 
 @section('custom-js')
+<script>
 
+$(document).ready(function(){
+    
+        $(".ajax-delete-button").on("click", function(e){
+            var id = $(this).attr("data-id");
+                
+                $("#remove_indicator").val("0");
+                e.preventDefault();
+                
+//                $(this).closest('.table_row').remove();
+                $.ajax({
+                    url: "/api/delete",
+                    type: "GET",
+                    async: false,
+                    data: {
+                        'id': id,
+                        '_token': $('#admin_form [name=_token]').val()
+                    },
+                    'dataType': "json"
+                }).done(function(data){
+                    
+                    if (data.status) {
+                        $("#remove_indicator").val("1");
+                        $("#success_message_div").html("<p>"+data.message+"</p>");
+                        //$("#success_message_div").removeClass("d-none");
+                        $("#success_message_div").fadeIn(300);
+                    }
+
+                }).fail(function(jqXHR, error, message){
+                    console.log("Ne Radi");
+                }); /// $.ajax END
+                
+                if ( $("#remove_indicator").val() === "1") {
+                    $(this).closest('tr').remove();
+                    setTimeout(function() { 
+                    $("#success_message_div").fadeOut( 500, function() {
+
+                    });
+                    }, 2000);
+                }
+                
+
+
+        }); /// $(".ajax-delete-button") END
+        
+
+    
+}); /// $(document).ready END
+
+
+
+</script>
 @endsection
+

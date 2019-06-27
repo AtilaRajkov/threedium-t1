@@ -14,7 +14,7 @@ class ArticlesController extends Controller
    use \App\Traits\saveAndResizeImage;  
    
    private $folderName = 'images';
-   private $numberOfArticles = 2;
+   private $numberOfArticles = 6;
    
 //   public function __construct() {
 //        $this->middleware('auth')->except('login');
@@ -41,7 +41,6 @@ class ArticlesController extends Controller
     {
        $rows = Article::where('deleted', 0)
                ->paginate($this->numberOfArticles);
-               
        
        $size = 'm';
        
@@ -82,6 +81,7 @@ class ArticlesController extends Controller
          request()->validate([
              'title' => 'required|string|min:3|max:191|unique:articles',
              'image' => 'required|image|mimes:jpeg,bmp,png,jpg',
+             'summary' => 'required|string|min:3|max:191',
              'content' => 'required|string|min:3|max:65000',
          ]);
 
@@ -90,6 +90,7 @@ class ArticlesController extends Controller
          $row->deleted = 0;
          $row->user_id = auth()->user()->id;
          $row->title = request('title');
+         $row->summary = request('summary');
          $row->content = request('content');
 
          if (request()->has('image')) {
@@ -145,6 +146,7 @@ class ArticlesController extends Controller
        request()->validate([
           'title' => 'required|string|min:3|max:191|unique:articles,title,' . $article->id,
           'image' => 'nullable|image|mimes:jpeg,bmp,png,jpg',
+           'summary' => 'required|string|min:3|max:191',
           'content' => 'required|string|min:3|max:65000',
       ]);
 
@@ -153,6 +155,7 @@ class ArticlesController extends Controller
       $row->deleted = 0;
       $row->user_id = auth()->user()->id;
       $row->title = request('title');
+      $row->summary = request('summary');
       $row->content = request('content');
 
       $row->image = $article->image;
@@ -189,7 +192,7 @@ class ArticlesController extends Controller
       $article->save();
 
       session()->flash('message-type', 'success');
-      session()->flash('message-text', 'Successfully deelted Article: "' . $article->title . '".');
+      session()->flash('message-text', 'Successfully delted Article: "' . $article->title . '".');
 
       
       return back();

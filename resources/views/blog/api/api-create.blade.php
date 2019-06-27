@@ -32,7 +32,8 @@
 
 <h1 class="mb-4">Api: Create an Article</h1>
 
-@include('blog.layout.partials.messages')
+<div class="alert alert-success d-none" role="alert" id="success_message_div">
+</div>
 
 <form method="POST" enctype="multipart/form-data" id="article-form">
     @csrf
@@ -45,7 +46,17 @@
                 
             </div>   
     </div>
+    
+        <!-- SUMMARY -->
+    <div class="form-group">
+        <label for="title">Summary</label>
+        <input type="text" name="summary" value="{{ old('summary') }}" class="form-control" id="summary" placeholder="">
+            <div class='text text-danger summary_errors'>
+                
+            </div>   
+    </div>
 
+    
     <!-- IMAGE -->
     <div class="form-group">
         <label for="image">Choose an Image</label>
@@ -55,10 +66,12 @@
             </div>
     </div>
 
+    <textarea name="content" id="textarea_1" hidden></textarea>
+    
     <!-- CONTENT -->
     <div class="form-group">
         <label for="content">Content</label>
-        <textarea name="content" class="form-control" id="content-create" rows="10" >{{ old('content') }}</textarea>
+        <textarea name="content_ck" class="form-control" id="content" rows="10" >{{ old('content') }}</textarea>
             <div class='text text-danger content_errors'>
                 
             </div>
@@ -77,7 +90,7 @@
 @section('custom-js')
 <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
 <script>
-CKEDITOR.replace( 'content' );
+CKEDITOR.replace( 'content_ck' );
 </script>
 
 <script>
@@ -86,8 +99,15 @@ $(document).ready(function() {
 
    $('#ajax_create').on('click', function(e) {
       e.preventDefault();
+      
+      
+        var content = CKEDITOR.instances['content'].getData();
+        $("#textarea_1").val(content);
          var form = $('#article-form').get(0);
-//         console.log(form);
+//         var data = new FormData(form);
+//         data.content = content;
+//         data._pera= $('#article-form [name=_token]').val();
+         
          $.ajax({
              url: "/api/store",
              type: "post",
@@ -98,25 +118,43 @@ $(document).ready(function() {
              cache: false
          }).done(function (response) {
              
-             
-             if (!response.staus && response.errors.title !== undefined) {
-                 if(response.errors.title !== undefined) {
-                   console.log(response.errors.title);
+             /// Ispis gresakaa za "title":
+             if (!response.staus && response.errors !== undefined && response.errors.title !== undefined) {
+                    $("#success_message_div").addClass("d-none");
                     $(".title_errors").html("<p id='title_errors'>"+response.errors.title[0]+"</p>");
-                 }
-//                 if(response.errors.image[0]) {
-//                   console.log(response.errors.image);
-//                    $(".image_errors").html("<p>"+response.errors.image[0]+"</p>");
-//                 }
-//                 if(response.errors.content[0]) {
-//                   console.log(response.errors.content);
-//                    $(".content_errors").html("<p>"+response.errors.content[0]+"</p>");
-//                 }
              } else {
                  $("#title_errors").remove();
              }
+             /// Ispis gresaka za "image":
+             if (!response.staus && response.errors !== undefined && response.errors.image !== undefined) {
+                   $("#success_message_div").addClass("d-none");
+                    $(".image_errors").html("<p id='image_errors'>"+response.errors.image[0]+"</p>");
+             } else {
+                 $("#image_errors").remove();
+             }
+             /// Ispis gresaka za "content":
+             if (!response.staus && response.errors !== undefined && response.errors.content !== undefined) {
+                   $("#success_message_div").addClass("d-none");
+                    $(".content_errors").html("<p id='content_errors'>"+response.errors.content[0]+"</p>");
+             } else {
+                 $("#content_errors").remove();
+             }
+             /// Ispis gresaka za "summary":
+             if (!response.staus && response.errors !== undefined && response.errors.summary !== undefined) {
+                   $("#success_message_div").addClass("d-none");
+                    $(".summary_errors").html("<p id='summary_errors'>"+response.errors.summary[0]+"</p>");
+             } else {
+                 $("#summary_errors").remove();
+             }
              
-            
+//             console.log(response);
+             /// Ispis success message-a
+             if ( response.status ) {
+                 console.log("Usao je u if.");
+                 $("#success_message_div").html("<p id='success_message_p'>"+response.message+"</p>");
+                 $("#success_message_div").removeClass("d-none");
+             }
+             
              
          }).fail(function (jqXHR, error, message) {
              
