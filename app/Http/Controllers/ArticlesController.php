@@ -40,6 +40,7 @@ class ArticlesController extends Controller
     public function index()
     {
        $rows = Article::where('deleted', 0)
+               ->orderBy('created_at', 'desc')
                ->paginate($this->numberOfArticles);
        
        $size = 'm';
@@ -50,8 +51,11 @@ class ArticlesController extends Controller
     
     public function admin()
     {
+//        $this->authorize('update', $article);
+        
        $rows =  Article::where('deleted', 0)
                ->where('user_id', auth()->id())
+               ->orderBy('created_at', 'desc')
                ->get();
        
        //$user = \App\User::where('id', auth()->id())->first();
@@ -204,6 +208,7 @@ class ArticlesController extends Controller
 //      dd('Udje');
      $rows = Article::where('user_id', $user->id)
              ->where('deleted', 0)
+             ->orderBy('created_at', 'desc')
              ->paginate($this->numberOfArticles);
      $author = $user->name;
      $size = 'm';

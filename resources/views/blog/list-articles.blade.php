@@ -43,7 +43,7 @@
          <div>
              {{ $row->summary }}
          </div>
-         <p class="post-meta">Posted by
+         <p class="post-meta">Posted by 
              <a href="{{ route('articles_by_author', ['user' => $row->user->id, 'author' => Str::slug($row->user->name, '-')  ]) }}">
                  {{ $row->user->name }}
              </a>

@@ -39,8 +39,10 @@
                  </div>
              </div>
          </a>
-          <div>{{ mb_substr($row->content, 0, 200) }}</div>
-          <p class="post-meta">Posted by
+          <div>
+              {{ $row->summary }}
+          </div>
+          <p class="post-meta">Posted by 
               <a href="#">{{ $row->user->name }}</a>
               on: {{ date('M d, Y', strtotime($row->created_at)) }}</p>
       </div>
@@ -52,7 +54,9 @@
 
 </div>
 
+<div class="col-lg-4 col-md-2"  id="my_sidebar">
 @include('blog.layout.partials.sidebar')
+</div>
 
 @endsection
 

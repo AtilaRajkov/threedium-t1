@@ -53,7 +53,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://threedium-t1.local'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -120,7 +120,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'base64:GkMdQij80r45z66uCF4MnlFnh592YsGJZDmVAkdxGW0='),
 
     'cipher' => 'AES-256-CBC',
 

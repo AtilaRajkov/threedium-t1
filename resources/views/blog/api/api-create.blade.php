@@ -147,14 +147,14 @@ $(document).ready(function() {
                  $("#summary_errors").remove();
              }
              
-//             console.log(response);
              /// Ispis success message-a
              if ( response.status ) {
-                 console.log("Usao je u if.");
                  $("#success_message_div").html("<p id='success_message_p'>"+response.message+"</p>");
-                 $("#success_message_div").removeClass("d-none");
+//                 $("#success_message_div").removeClass("d-none");
+                    CKEDITOR.instances.editeur1.setData("");
              }
              
+
              
          }).fail(function (jqXHR, error, message) {
              

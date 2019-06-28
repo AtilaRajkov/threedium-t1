@@ -12,11 +12,11 @@
             
            <!--Api link-->
           <li class="nav-item">
-              <a class="nav-link" href="{{ route('blank_page') }}" id="api_all_articles">Api:all-articles</a>
+              <a class="nav-link" href="{{ route('blank_page') }}" id="api_all_articles">Ajax:all-articles</a>
           </li>
           @if (Auth::check()) 
             <li class="nav-item">
-              <a class="nav-link" href="{{route('api_create')}}">Api:Create</a>
+              <a class="nav-link" href="{{route('api_create')}}">Ajax:Create</a>
             </li>
           @endif
           
@@ -39,6 +39,12 @@
             @endif
           @else
           
+          <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link " href="{{ route('admin') }}" >
+                  Admin Panel <span class="caret"></span>
+              </a>
+          </li>
+          
           <li class="nav-item">
               <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
@@ -48,6 +54,7 @@
                   @csrf
               </form>
           </li>
+          
           <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link " href="{{ route('admin') }}" >
                   {{ Auth::user()->name }} <span class="caret"></span>
