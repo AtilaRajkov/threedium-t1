@@ -14,14 +14,14 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Atila Rajkov',
-            'email' => 'atila.rajkov@gmail.com',
+            'email' => 'atila@gmail.com',
             'password' => Hash::make('password'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
         DB::table('users')->insert([
             'name' => 'Milos Markovic',
-            'email' => 'milos.markovic@gmail.com',
+            'email' => 'milos@gmail.com',
             'password' => Hash::make('password'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

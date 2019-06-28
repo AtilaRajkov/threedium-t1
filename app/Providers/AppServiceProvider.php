@@ -26,11 +26,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot() 
    {
       Schema::defaultStringLength(191);
-
-      $authorsWithArticles = User::whereHas('articles', function ($query) {
-                 $query->where('deleted', 0);
-              })->get();
-      view()->share('authorsWithArticles', $authorsWithArticles);
+      if (!app()->runningInConsole()) {
+        $authorsWithArticles = User::whereHas('articles', function ($query) {
+                   $query->where('deleted', 0);
+                })->get();
+        view()->share('authorsWithArticles', $authorsWithArticles);
+      }
    }
 
 }
